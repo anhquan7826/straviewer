@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity_detail.ActivityDetailActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/baseline_arrow_back_24"
+            app:title="@string/activity_detail" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:visibility="gone"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <com.vnpttech.straviewer.common.LoadingView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:visibility="gone"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <com.vnpttech.straviewer.common.ErrorView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/loaded"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:paddingBottom="16dp"
+        android:visibility="visible"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/activity_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="Activity Name"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/activity_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:text="Activity description..."
+                android:textSize="16sp"
+                android:visibility="gone"
+                tools:ignore="HardcodedText" />
+
+            <com.vnpttech.straviewer.common.ActivityDetailItemView
+                android:id="@+id/activity_distance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="Distance" />
+
+            <com.vnpttech.straviewer.common.ActivityDetailItemView
+                android:id="@+id/activity_elev_gain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="Elevation Gain" />
+
+            <com.vnpttech.straviewer.common.ActivityDetailItemView
+                android:id="@+id/activity_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="Time" />
+
+            <com.vnpttech.straviewer.common.ActivityDetailItemView
+                android:id="@+id/activity_sport_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="Sport Type" />
+
+            <com.vnpttech.straviewer.common.ActivityDetailItemView
+                android:id="@+id/activity_start_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="Start Date" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/activity_map"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_margin="16dp"
+                tools:layout="@layout/fragment_polymap" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

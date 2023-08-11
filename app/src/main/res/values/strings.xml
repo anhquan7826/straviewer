@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">StraViewer</string>
+    <string name="title_activity_login">Login</string>
+    <string name="string_login_button_title">Sign in to Strava</string>
+    <string name="athlete_name">Athlete Name</string>
+    <string name="activity_distance">Distance</string>
+    <string name="activity_elev_gain_short">Elev Gain</string>
+    <string name="activity_time">Time</string>
+    <string name="activity_detail">Activity Detail</string>
+    <string name="error">Error</string>
+    <string name="logout_alert_title">Alert</string>
+    <string name="logout_alert_message">Do you want to logout?</string>
+    <string name="logout_alert_cancel">Cancel</string>
+    <string name="logout_alert_logout">Log out</string>
+</resources>

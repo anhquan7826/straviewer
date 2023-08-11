@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="client_id">111563</string>
+    <string name="client_secret">23277b976c4459fd41acab49c90cb4d1c8054c59</string>
+    <string name="redirect_uri">straviewer://straviewer.com</string>
+    <string name="response_type">code</string>
+    <string name="approval_prompt">auto</string>
+</resources>
