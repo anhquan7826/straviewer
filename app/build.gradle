@@ -4,6 +4,7 @@ plugins {
     id 'com.google.dagger.hilt.android'
     id 'kotlin-kapt'
     id 'com.google.devtools.ksp'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -11,6 +12,7 @@ android {
     compileSdk 33
 
     defaultConfig {
+
         applicationId "com.vnpttech.straviewer"
         minSdk 29
         targetSdk 33
