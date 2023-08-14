@@ -1,21 +1,31 @@
 package com.vnpttech.straviewer.ui.activity_detail
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.PolylineOptions
+import com.google.maps.android.PolyUtil
 import com.vnpttech.straviewer.R
+import com.vnpttech.straviewer.data.models.ActivityModel
 import com.vnpttech.straviewer.databinding.ActivityActivityDetailBinding
-import com.vnpttech.straviewer.ui.polymap.PolymapFragment
-import com.vnpttech.straviewer.utils.enums.LoadStatus
 import com.vnpttech.straviewer.utils.UnitFormatter
+import com.vnpttech.straviewer.utils.enums.LoadStatus
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ActivityDetailActivity : AppCompatActivity() {
+class ActivityDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityActivityDetailBinding
     private lateinit var viewModel: ActivityDetailViewModel
 
@@ -75,10 +85,29 @@ class ActivityDetailActivity : AppCompatActivity() {
         binding.activitySportType.setValue(viewModel.activity.sportType.toString())
         binding.activityStartDate.setValue(UnitFormatter.time(viewModel.activity.startDate))
 
-        supportFragmentManager.beginTransaction().add(R.id.activity_map, PolymapFragment(
-            viewModel.activity.map,
-            viewModel.activity.startLatLng,
-            viewModel.activity.endLatLng
-        )).commit()
+        val supportMapFragment = SupportMapFragment()
+        supportFragmentManager.beginTransaction().add(R.id.activity_map, supportMapFragment)
+            .commit()
+        supportMapFragment.getMapAsync(this)
+    }
+
+    override fun onMapReady(p0: GoogleMap) {
+        setPosition(p0, viewModel.activity)
+    }
+
+    private fun setPosition(gmap: GoogleMap, activity: ActivityModel) {
+        val startPos = LatLng(activity.startLatLng.first(), activity.startLatLng.last())
+        val finishPos = LatLng(activity.endLatLng.first(), activity.endLatLng.last())
+
+        gmap.addMarker(MarkerOptions().position(startPos).title("Start"))
+        gmap.addMarker(MarkerOptions().position(finishPos).title("Finish"))
+
+        val posBound = LatLngBounds.builder().include(startPos).include(finishPos).build()
+
+        gmap.moveCamera(CameraUpdateFactory.newLatLngBounds(posBound, 64))
+
+        gmap.addPolyline(
+            PolylineOptions().addAll(PolyUtil.decode(activity.map.polyline)).color(Color.BLUE).width(5f)
+        )
     }
 }

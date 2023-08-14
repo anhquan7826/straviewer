@@ -2,6 +2,7 @@ package com.vnpttech.straviewer.ui.activity_detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import com.vnpttech.straviewer.data.models.ActivityModel
 import com.vnpttech.straviewer.data.services.StravaServices
 import com.vnpttech.straviewer.utils.enums.LoadStatus
@@ -28,7 +29,7 @@ class ActivityDetailViewModel @Inject constructor(
         services.getActivity(id).subscribeOn(Schedulers.io()).subscribe(
             {
                 activity = it
-                log(it)
+                log(Gson().toJson(it))
                 _loadStatus.postValue(LoadStatus.LOADED)
             },
             {
