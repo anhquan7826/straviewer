@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import com.vnpttech.straviewer.R
+import com.vnpttech.straviewer.BuildConfig
 import com.vnpttech.straviewer.data.services.StravaServices
 import com.vnpttech.straviewer.databinding.ActivitySplashBinding
 import com.vnpttech.straviewer.dependency_injection.app_preferences.AppPreferences
@@ -35,12 +35,12 @@ class SplashActivity : AppCompatActivity() {
         delayFor(1, TimeUnit.SECONDS) {
             val expiresIn = preferences.getInt("expires_in")
             if (expiresIn == -1) {
-                startActivity(Intent(applicationContext, LoginActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
             }
             if (Date(expiresIn.toLong() * 1000).before(Date())) {
                 services.reauthorize(
-                    clientId = resources.getString(R.string.client_id),
-                    clientSecret = resources.getString(R.string.client_secret),
+                    clientId = BuildConfig.CLIENT_ID,
+                    clientSecret = BuildConfig.CLIENT_SECRET,
                     refreshToken = preferences.getString("refresh_token")!!
                 ).subscribeOn(Schedulers.io()).subscribe({
                     with(preferences) {
@@ -60,12 +60,12 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun openLoginActivity() {
-        startActivity(Intent(applicationContext, LoginActivity::class.java))
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
 
     private fun openHomeActivity() {
-        startActivity(Intent(applicationContext, HomeActivity::class.java))
+        startActivity(Intent(this, HomeActivity::class.java))
         finish()
     }
 }

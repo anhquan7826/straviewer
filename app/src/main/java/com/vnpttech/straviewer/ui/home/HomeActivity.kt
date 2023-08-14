@@ -39,26 +39,12 @@ class HomeActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun buildObserver() {
         viewModel.loadStatus.observe(this@HomeActivity) {
-            when (it) {
-                LoadStatus.LOADED -> {
-                    binding.loading.visibility = GONE
-                    binding.loaded.visibility = VISIBLE
-                    binding.error.visibility = GONE
-                    buildLayout()
-                }
-
-                LoadStatus.LOADING -> {
-                    binding.loading.visibility = VISIBLE
-                    binding.loaded.visibility = GONE
-                    binding.error.visibility = GONE
-                }
-
-                else -> {
-                    binding.loading.visibility = GONE
-                    binding.loaded.visibility = GONE
-                    binding.error.visibility = VISIBLE
-                }
+            binding.apply {
+                loading.visibility = if(it == LoadStatus.LOADING) VISIBLE else GONE
+                loaded.visibility = if(it == LoadStatus.LOADED) VISIBLE else GONE
+                error.visibility = if(it == LoadStatus.ERROR) VISIBLE else GONE
             }
+            if (it == LoadStatus.LOADED) buildLayout()
         }
 
         viewModel.isLoggedIn.observe(this@HomeActivity) {

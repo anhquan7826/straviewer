@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.vnpttech.straviewer.BuildConfig
 import com.vnpttech.straviewer.R
 import com.vnpttech.straviewer.data.database.AppDatabase
 import com.vnpttech.straviewer.data.services.StravaServices
@@ -36,8 +37,8 @@ class StravaOAuthCallbackActivity : AppCompatActivity() {
             finish()
         } else {
             stravaServices.authorize(
-                clientId = resources.getString(R.string.client_id),
-                clientSecret = resources.getString(R.string.client_secret),
+                clientId = BuildConfig.CLIENT_ID,
+                clientSecret = BuildConfig.CLIENT_SECRET,
                 code
             ).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
                 log(it)
@@ -56,7 +57,7 @@ class StravaOAuthCallbackActivity : AppCompatActivity() {
                     openHomeActivity()
                 }
             }, {
-                with(Toast(applicationContext)) {
+                with(Toast(this)) {
                     setText("Error: ${it.message ?: "Unknown!"}")
                     show()
                 }
@@ -66,12 +67,12 @@ class StravaOAuthCallbackActivity : AppCompatActivity() {
     }
 
     private fun openLoginActivity() {
-        startActivity(Intent(applicationContext, LoginActivity::class.java))
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
 
     private fun openHomeActivity() {
-        startActivity(Intent(applicationContext, HomeActivity::class.java))
+        startActivity(Intent(this, HomeActivity::class.java))
         finish()
     }
 }

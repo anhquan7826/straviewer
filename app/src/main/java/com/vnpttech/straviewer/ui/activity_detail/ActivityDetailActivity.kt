@@ -42,26 +42,12 @@ class ActivityDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun buildObserver() {
         viewModel.loadStatus.observe(this@ActivityDetailActivity) {
-            when (it) {
-                LoadStatus.LOADING -> {
-                    binding.loading.visibility = VISIBLE
-                    binding.loaded.visibility = GONE
-                    binding.error.visibility = GONE
-                }
-
-                LoadStatus.LOADED -> {
-                    binding.loading.visibility = GONE
-                    binding.loaded.visibility = VISIBLE
-                    binding.error.visibility = GONE
-                    buildLayout()
-                }
-
-                else -> {
-                    binding.loading.visibility = GONE
-                    binding.loaded.visibility = GONE
-                    binding.error.visibility = VISIBLE
-                }
+            binding.apply {
+                loading.visibility = if(it == LoadStatus.LOADING) VISIBLE else GONE
+                loaded.visibility = if(it == LoadStatus.LOADED) VISIBLE else GONE
+                error.visibility = if(it == LoadStatus.ERROR) VISIBLE else GONE
             }
+            if (it == LoadStatus.LOADED) buildLayout()
         }
     }
 
