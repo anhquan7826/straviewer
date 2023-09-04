@@ -81,19 +81,26 @@ class ActivityDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         setPosition(p0, viewModel.activity)
     }
 
-    private fun setPosition(gmap: GoogleMap, activity: ActivityModel) {
-        val startPos = LatLng(activity.startLatLng.first(), activity.startLatLng.last())
-        val finishPos = LatLng(activity.endLatLng.first(), activity.endLatLng.last())
-
+    private fun setPosition(
+        gmap: GoogleMap,
+        activity: ActivityModel
+    ) {
+        val startPos = LatLng(
+            activity.startLatLng.first(),
+            activity.startLatLng.last()
+        )
+        val finishPos = LatLng(
+            activity.endLatLng.first(),
+            activity.endLatLng.last()
+        )
         gmap.addMarker(MarkerOptions().position(startPos).title("Start"))
         gmap.addMarker(MarkerOptions().position(finishPos).title("Finish"))
-
         val posBound = LatLngBounds.builder().include(startPos).include(finishPos).build()
-
         gmap.moveCamera(CameraUpdateFactory.newLatLngBounds(posBound, 64))
-
         gmap.addPolyline(
-            PolylineOptions().addAll(PolyUtil.decode(activity.map.polyline)).color(Color.BLUE).width(5f)
+            PolylineOptions().addAll(
+                PolyUtil.decode(activity.map.polyline)
+            ).color(Color.BLUE).width(5f)
         )
     }
 }
