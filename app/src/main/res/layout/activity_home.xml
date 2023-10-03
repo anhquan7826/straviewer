@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeActivity">
+    tools:context="com.anhquan.straviewer.ui.home.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <com.vnpttech.straviewer.common.LoadingView
+    <com.anhquan.straviewer.common.LoadingView
         android:id="@+id/loading"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:visibility="gone"
@@ -70,7 +70,7 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <com.vnpttech.straviewer.common.ErrorView
+    <com.anhquan.straviewer.common.ErrorView
         android:id="@+id/error"
         android:visibility="gone"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"

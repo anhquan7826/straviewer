@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity_detail.ActivityDetailActivity">
+    tools:context="com.anhquan.straviewer.ui.activity_detail.ActivityDetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_layout"
@@ -21,7 +21,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <com.vnpttech.straviewer.common.LoadingView
+    <com.anhquan.straviewer.common.LoadingView
         android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,7 +29,7 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
 
-    <com.vnpttech.straviewer.common.ErrorView
+    <com.anhquan.straviewer.common.ErrorView
         android:id="@+id/error"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -73,37 +73,37 @@
                 android:visibility="gone"
                 tools:ignore="HardcodedText" />
 
-            <com.vnpttech.straviewer.common.ActivityDetailItemView
+            <com.anhquan.straviewer.common.ActivityDetailItemView
                 android:id="@+id/activity_distance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:title="Distance" />
 
-            <com.vnpttech.straviewer.common.ActivityDetailItemView
+            <com.anhquan.straviewer.common.ActivityDetailItemView
                 android:id="@+id/activity_elev_gain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:title="Elevation Gain" />
 
-            <com.vnpttech.straviewer.common.ActivityDetailItemView
+            <com.anhquan.straviewer.common.ActivityDetailItemView
                 android:id="@+id/activity_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:title="Time" />
 
-            <com.vnpttech.straviewer.common.ActivityDetailItemView
+            <com.anhquan.straviewer.common.ActivityDetailItemView
                 android:id="@+id/activity_sport_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:title="Sport Type" />
 
-            <com.vnpttech.straviewer.common.ActivityDetailItemView
+            <com.anhquan.straviewer.common.ActivityDetailItemView
                 android:id="@+id/activity_start_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:title="Start Date" />
 
-            <com.vnpttech.straviewer.common.CustomTouchEventView
+            <com.anhquan.straviewer.common.CustomTouchEventView
                 android:layout_margin="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="300dp">
@@ -119,7 +119,7 @@
                         android:layout_height="match_parent" />
                 </com.google.android.material.card.MaterialCardView>
 
-            </com.vnpttech.straviewer.common.CustomTouchEventView>
+            </com.anhquan.straviewer.common.CustomTouchEventView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
